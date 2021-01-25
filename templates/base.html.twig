@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+
+        {% block javascripts %}{% endblock %}
+    </head>
+    <body>
+
+        {% set flashes = app.flashes %}
+        {% if flashes|length %}
+            <div id="flash_messages">
+                {% for type, messages in flashes %}
+                    <div class="flash_{{ type }}">
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% block body %}{% endblock %}
+    </body>
+</html>
